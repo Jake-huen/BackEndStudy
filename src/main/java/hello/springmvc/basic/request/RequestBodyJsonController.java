@@ -21,7 +21,6 @@ public class RequestBodyJsonController {
     public String requestBodyJsonV2(@RequestBody String messageBody) throws JsonProcessingException {
         log.info("messageBody={}", messageBody);
         HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
-
         return "ok";
     }
 
