@@ -185,7 +185,7 @@ public class ValidationItemControllerV2 {
             log.info("errors = {}", bindingResult);
             return "validation/v2/addForm";
         }
-a
+
         // 성공 로직
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
