@@ -1,11 +1,13 @@
 package hello.jdbc;
 
+import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.net.ConnectException;
 import java.sql.SQLException;
 
+@Slf4j
 public class UnCheckedAppTest {
 
     @Test
@@ -15,10 +17,21 @@ public class UnCheckedAppTest {
                 .isInstanceOf(RuntimeException.class);
     }
 
+    @Test
+    void printEx() {
+        Controller controller = new Controller();
+        try {
+            controller.request();
+        } catch (Exception e) {
+            // e.printStackTrace();
+            log.info("ex", e);
+        }
+    }
+
     static class Controller {
         Service service = new Service();
 
-        public void request() throws SQLException, ConnectException {
+        public void request() {
             service.logic();
         }
     }
