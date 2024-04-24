@@ -47,8 +47,8 @@ public class MemberService {
      */
     @Transactional
     public void update(Long id, String name) {
-        Member member = memberRepository.findOne(id);
-        member.setName(name);
+        Member member = memberRepository.findOne(id); // 찾고나서 영속상태
+        member.setName(name); // 종료되면 스프링 AOP가 동작하면서 트랜잭션 커밋이 되면서 jpa가 flush하고 데이터베이스 트랜잭션 커밋
     }
 
 }
