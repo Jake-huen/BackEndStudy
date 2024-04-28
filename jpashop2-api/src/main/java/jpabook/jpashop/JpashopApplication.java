@@ -12,6 +12,7 @@ public class JpashopApplication {
 		SpringApplication.run(JpashopApplication.class, args);
 	}
 
+	// Hibernate5 Library => 지연로딩 오류 방지
 	@Bean
 	Hibernate5Module hibernate5Module() {
 		Hibernate5Module hibernate5Module = new Hibernate5Module();
