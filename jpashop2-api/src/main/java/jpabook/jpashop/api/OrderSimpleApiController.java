@@ -52,6 +52,9 @@ public class OrderSimpleApiController {
     @GetMapping("/api/v3/simple-orders")
     public List<SimpleOrderDto> ordersV3() {
         List<Order> orders = orderRepository.findAllWithMemberDelivery();
+        return orders.stream()
+                .map(o -> new SimpleOrderDto(o))
+                .collect(Collectors.toList());
     }
 
     @Data
@@ -67,7 +70,7 @@ public class OrderSimpleApiController {
             name = order.getMember().getName(); // LAZY 초기화 -> 영속성 컨텍스트가 멤버ID를 가지고, 영속성 컨텍스트를 찾아본다.
             orderDate = order.getOrderDate();
             orderStatus = order.getStatus();
-            address = order.getDelivery().getAddress();
+            address = order.getDelivery().getAddress(); // LAZY 초기화
         }
     }
 }
