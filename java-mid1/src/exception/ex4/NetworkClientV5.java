@@ -3,13 +3,13 @@ package exception.ex4;
 import exception.ex4.exception.ConnectExceptionV4;
 import exception.ex4.exception.SendExceptionV4;
 
-public class NetworkClientV4 {
+public class NetworkClientV5 implements AutoCloseable {
 
     private final String address;
     public boolean connectError;
     public boolean sendError;
 
-    public NetworkClientV4(String address) {
+    public NetworkClientV5(String address) {
         this.address = address;
     }
 
@@ -41,5 +41,11 @@ public class NetworkClientV4 {
         if (data.contains("error2")) {
             sendError = true;
         }
+    }
+
+    @Override
+    public void close() {
+        System.out.println("NetworkClientV5.close");
+        disconnect();
     }
 }

@@ -1,5 +1,7 @@
 package exception.ex4;
 
+import exception.ex4.exception.SendExceptionV4;
+
 import java.util.Scanner;
 
 public class MainV4 {
@@ -31,5 +33,10 @@ public class MainV4 {
         System.out.println("==개발자용 디버깅 메시지==");
         e.printStackTrace(System.out); // 스택 트레이스 출력
         // e.printStackTrace();
+
+        // 필요하면 예외별로 별도의 추가 처리 가능
+        if (e instanceof SendExceptionV4 sendExceptionV4) {
+            System.out.println("[전송 오류] 전송 데이터 : " + sendExceptionV4.getSendData());
+        }
     }
 }

@@ -1,16 +1,14 @@
 package exception.ex4;
 
-public class NetworkServiceV4 {
+public class NetworkServiceV5 {
     public void sendMessage(String data) {
         String address = "http://example.com";
-        NetworkClientV4 client = new NetworkClientV4(address);
-        client.initError(data);
 
-        try {
+
+        try (NetworkClientV5 client = new NetworkClientV5(address)) {
+            client.initError(data);
             client.connect();
             client.send(data);
-        } finally {
-            client.disconnect();
         }
     }
 }
