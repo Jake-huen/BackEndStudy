@@ -21,7 +21,7 @@ public class KafkaConsumerConfig {
         Map<String, Object> config = new HashMap<>();
 
         // 서버 정보 추가
-        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.10.40.152:9092");
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         // 그룹 ID 정보 추가
         config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_1");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);

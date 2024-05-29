@@ -22,9 +22,6 @@ class ApplyServiceTest {
     @Autowired
     private CouponRepository couponRepository;
 
-    @Autowired
-    private CouponCountRepository couponCountRepository;
-
     @Test
     public void 한번만응모() {
         applyService.apply(1L);
@@ -55,6 +52,8 @@ class ApplyServiceTest {
         }
 
         countDownLatch.await();
+
+        Thread.sleep(10000);
 
         long count = couponRepository.count();
 
