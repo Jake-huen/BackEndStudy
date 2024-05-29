@@ -1,5 +1,6 @@
 package com.taeheon.service;
 
+import com.taeheon.repository.CouponCountRepository;
 import com.taeheon.repository.CouponRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ class ApplyServiceTest {
 
     @Autowired
     private CouponRepository couponRepository;
+
+    @Autowired
+    private CouponCountRepository couponCountRepository;
 
     @Test
     public void 한번만응모() {
