@@ -59,4 +59,32 @@ class ApplyServiceTest {
 
         assertThat(count).isEqualTo(100);
     }
+
+    @Test
+    public void 한명당_한개의쿠폰만_발급() throws InterruptedException {
+        int threadCount = 1000;
+        // Executor : 병렬 작업을 간단하게 할 수 있게 도와주는 Java API
+        ExecutorService executorService = Executors.newFixedThreadPool(32);
+        // 모든 요청이 끝날때까지 기다려야 하므로 CountDownLatch를 사용
+        // 다른 Thread에서 수행하는 작업을 기다리도록 도와주는
+        CountDownLatch countDownLatch = new CountDownLatch(threadCount);
+
+        for (int i = 0; i < threadCount; i++) {
+            executorService.submit(() -> {
+                try {
+                    applyService.applySet(1L);
+                } finally {
+                    countDownLatch.countDown();
+                }
+            });
+        }
+
+        countDownLatch.await();
+
+        Thread.sleep(10000);
+
+        long count = couponRepository.count();
+
+        assertThat(count).isEqualTo(1);
+    }
 }

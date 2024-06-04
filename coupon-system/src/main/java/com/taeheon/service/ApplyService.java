@@ -2,6 +2,7 @@ package com.taeheon.service;
 
 import com.taeheon.domain.Coupon;
 import com.taeheon.producer.CouponCreateProducer;
+import com.taeheon.repository.AppliedUserRepository;
 import com.taeheon.repository.CouponCountRepository;
 import com.taeheon.repository.CouponRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,8 @@ public class ApplyService {
     private final CouponCountRepository couponCountRepository;
 
     private final CouponCreateProducer couponCreateProducer;
+
+    private final AppliedUserRepository appliedUserRepository;
 
     // @Transactional
     public void apply(Long userId) {
@@ -38,6 +41,37 @@ public class ApplyService {
         // couponRepository.save(new Coupon(userId));
 
         // 토픽에 User의 Id를 전송하도록 설정
+        couponCreateProducer.create(userId);
+    }
+
+    public void applyLock(Long userId) {
+        // lock start
+        // 쿠폰발급 여부
+        // if(발급됐다면) return
+        Long count = couponCountRepository.increment();
+        if (count > 100) {
+            return;
+        }
+
+
+        // couponCreateProducer.create(userId);
+        // 쿠폰 발급
+        // lock end
+    }
+
+    public void applySet(Long userId) {
+        Long apply = appliedUserRepository.add(userId);
+
+        if (apply != 1) {
+            return;
+        }
+
+        Long count = couponCountRepository.increment();
+
+        if (count > 100) {
+            return;
+        }
+
         couponCreateProducer.create(userId);
     }
 }
