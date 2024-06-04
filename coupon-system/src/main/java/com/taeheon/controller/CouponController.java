@@ -1,6 +1,7 @@
 package com.taeheon.controller;
 
 import com.taeheon.service.ApplyService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -23,7 +23,7 @@ public class KafkaProducerConfig {
         Map<String, Object> config = new HashMap<>();
 
         // 서버 정보 추가
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // 이 부분이 도커ID:9092를 가리킨다?
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         // Key serializer class 정보 추가
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         // Value serializer class 정보 추가
