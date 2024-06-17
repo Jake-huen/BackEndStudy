@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: jpa-basic
+  datasource:
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    url: "jdbc:h2:tcp://localhost/~/test"
+  jpa:
+    properties:
+      hibernate:
+        dialect: H2Dialect
+        show_sql: true
+        format_sql: true
