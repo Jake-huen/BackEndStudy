@@ -13,15 +13,6 @@ import java.lang.reflect.Member;
 public class JpaBasicApplication {
 
     public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hello");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction tx = entityManager.getTransaction();
-        tx.begin();
-
-        tx.commit();
-        entityManager.close();
-        entityManagerFactory.close();
-
         SpringApplication.run(JpaBasicApplication.class, args);
     }
 
