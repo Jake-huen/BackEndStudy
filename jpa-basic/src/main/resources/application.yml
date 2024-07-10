@@ -9,6 +9,6 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: H2Dialect
+        dialect: org.hibernate.dialect.H2Dialect
         show_sql: true
         format_sql: true
