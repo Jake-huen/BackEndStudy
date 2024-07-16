@@ -13,7 +13,6 @@ import java.util.List;
 public class Member {
 
     @Id @GeneratedValue
-    @Column(name = "MEMBER_ID") // member_id 데이터베이스와 java 쓰는방법이 다름
     private Long id;
     private String name;
     private String city;
@@ -22,6 +21,9 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
+
+    @OneToOne
+    private Delivery delivery;
 
     public Member() {}
 
