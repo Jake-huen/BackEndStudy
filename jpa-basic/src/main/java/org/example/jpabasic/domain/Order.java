@@ -12,9 +12,10 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "ORDERS")
-public class Order {
+public class Order extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToOne
@@ -33,7 +34,8 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    public Order(){}
+    public Order() {
+    }
 
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);

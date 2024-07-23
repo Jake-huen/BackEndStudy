@@ -10,9 +10,10 @@ import java.util.List;
 @Entity
 @Getter
 @Setter // setter는 고민할 필요 -> 유지보수를 위해서
-public class Member {
+public class Member extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String city;
@@ -25,6 +26,7 @@ public class Member {
     @OneToOne
     private Delivery delivery;
 
-    public Member() {}
+    public Member() {
+    }
 
 }
