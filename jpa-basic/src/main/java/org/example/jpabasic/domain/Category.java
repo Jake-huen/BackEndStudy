@@ -7,6 +7,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 @Entity
 @Getter
 @Setter
@@ -24,7 +26,7 @@ public class Category {
             inverseJoinColumns = @JoinColumn(name = "ITEM_ID"))
     private List<Item> items = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
 
